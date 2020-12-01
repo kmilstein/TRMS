@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+          <!-- Required meta tags -->
+          <meta charset="utf-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
+      
+          <!-- Bootstrap CSS -->
+          <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+            integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+            crossorigin="anonymous"
+          />
+      
+          <link rel="stylesheet" href="App.css" />
+      
+          <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+            integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+            crossorigin="anonymous"
+          />
+      
+          <title>Request Form</title>
+        </head>
+
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            Tuition Reimbursement Management System
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#mobile-nav"
+          >
+            <span class="navbar-toggler-icon" />
+          </button>
+  
+          <div class="collapse navbar-collapse" id="mobile-nav">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="dashboard.html">
+                  Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                    <a class="nav-link" href="approver-request.html">
+                      Suborindate Requests
+                    </a>
+                  </li>
+            </ul>
+  
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="login.html">
+                  Logout
+                </a>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="register">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 m-auto">
+              <h5 class="display-4 text-center">Create / Edit Request Form</h5>
+              <hr />
+              <form>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder="Name"
+                    name="name"
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="number"
+                    class="form-control form-control-lg"
+                    placeholder="Employee ID"
+                    disabled
+                  />
+                </div>
+                <!-- disabled for Edit Only!! remove "disabled" for the Create operation -->
+                <div class="form-group">
+                  <textarea
+                    class="form-control form-control-lg"
+                    placeholder="Training Description"
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <input
+                    type="date"
+                    class="form-control form-control-lg"
+                    name="date"
+                  />
+                </div>
+                <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      placeholder="Location"
+                      name="location"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      placeholder="Description"
+                      name="description"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="number"
+                      class="form-control form-control-lg"
+                      placeholder="Cost"
+                      name="cost"
+                    />
+                  </div>
+                  <div class="dropdown">
+                    <button class="btn btn-secondary btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Grade Format
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" >Letter Grade</a>
+                      <a class="dropdown-item" >Presentation</a>
+                      <a class="dropdown-item" >Something else</a>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="dropdown">
+                    <button class="btn btn-secondary btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Training Type
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" >University Course</a>
+                      <a class="dropdown-item" >Seminar</a>
+                      <a class="dropdown-item" >Certification Prep Course</a>
+                      <a class="dropdown-item" >Certification</a>
+                      <a class="dropdown-item" >Technical Training</a>
+                      <a class="dropdown-item" >Other</a>
+                    </div>
+                  </div>
+                  <br>
+				<div class="input-group">
+				  <div class="custom-file">
+				    <input type="file" class="custom-file-input" id="inputGroupFile01"
+				      aria-describedby="inputGroupFileAddon01">
+				    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+				  </div>
+				</div>
+                <input type="submit" class="btn btn-primary btn-block mt-4" />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+        <footer class="page-footer font-small blue">
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+              <a href="dashboard.html"> TRMS.com</a>
+            </div>
+          </footer>
+      </div>
+</body>
+</html>

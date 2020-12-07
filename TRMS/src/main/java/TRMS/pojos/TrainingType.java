@@ -1,6 +1,7 @@
 package TRMS.pojos;
 
 public class TrainingType {
+	
 	private long trainingTypeId;
 	private String name;
 	private double percentCovered;

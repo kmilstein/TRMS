@@ -3,6 +3,7 @@ package TRMS.pojos;
 import java.time.LocalDate;
 
 public class Training {
+	
 	private long trainingId;
 	private long employeeId;
 	private double cost;
@@ -11,6 +12,7 @@ public class Training {
 	private long trainingTypeId;
 	private int trainingStatus;
 	private TrainingInfo trainingInfo;
+	private double grade;
 	
 	public Training() {
 		super();
@@ -20,6 +22,31 @@ public class Training {
 		super();
 		this.trainingId = trainingId;
 		this.employeeId = employeeId;
+	}
+
+	public Training(long employeeId, double cost, LocalDate date, long gradingFormatId, long trainingTypeId,
+			int trainingStatus, TrainingInfo trainingInfo) {
+		super();
+		this.employeeId = employeeId;
+		this.cost = cost;
+		this.date = date;
+		this.gradingFormatId = gradingFormatId;
+		this.trainingTypeId = trainingTypeId;
+		this.trainingStatus = trainingStatus;
+		this.trainingInfo = trainingInfo;
+	}
+
+	public Training(long employeeId, double cost, LocalDate date, long gradingFormatId, long trainingTypeId,
+			int trainingStatus, TrainingInfo trainingInfo, double grade) {
+		super();
+		this.employeeId = employeeId;
+		this.cost = cost;
+		this.date = date;
+		this.gradingFormatId = gradingFormatId;
+		this.trainingTypeId = trainingTypeId;
+		this.trainingStatus = trainingStatus;
+		this.trainingInfo = trainingInfo;
+		this.grade = grade;
 	}
 
 	public Training(long trainingId, long employeeId, double cost, LocalDate date, long gradingFormatId,
@@ -98,6 +125,14 @@ public class Training {
 		this.trainingInfo = trainingInfo;
 	}
 
+	public double getGrade() {
+		return grade;
+	}
+
+	public void setGrade(double grade) {
+		this.grade = grade;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -107,6 +142,8 @@ public class Training {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + (int) (employeeId ^ (employeeId >>> 32));
+		temp = Double.doubleToLongBits(grade);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + (int) (gradingFormatId ^ (gradingFormatId >>> 32));
 		result = prime * result + (int) (trainingId ^ (trainingId >>> 32));
 		result = prime * result + ((trainingInfo == null) ? 0 : trainingInfo.hashCode());
@@ -133,6 +170,8 @@ public class Training {
 			return false;
 		if (employeeId != other.employeeId)
 			return false;
+		if (Double.doubleToLongBits(grade) != Double.doubleToLongBits(other.grade))
+			return false;
 		if (gradingFormatId != other.gradingFormatId)
 			return false;
 		if (trainingId != other.trainingId)
@@ -153,7 +192,7 @@ public class Training {
 	public String toString() {
 		return "Training [trainingId=" + trainingId + ", employeeId=" + employeeId + ", cost=" + cost + ", date=" + date
 				+ ", gradingFormatId=" + gradingFormatId + ", trainingTypeId=" + trainingTypeId + ", trainingStatus="
-				+ trainingStatus + ", trainingInfo=" + trainingInfo + "]";
+				+ trainingStatus + ", trainingInfo=" + trainingInfo + ", grade=" + grade + "]";
 	}
 
 	

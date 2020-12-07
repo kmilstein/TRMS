@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	crossorigin="anonymous" />
+
+<link rel="stylesheet" href="App.css" />
+
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+	integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+	crossorigin="anonymous" />
+
+<title>Request Form</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
+		<div class="container">
+			<a class="navbar-brand" href="#"> Tuition Reimbursement
+				Management System </a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#mobile-nav">
+				<span class="navbar-toggler-icon" />
+			</button>
+
+			<div class="collapse navbar-collapse" id="mobile-nav">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link" href="dashboard.html">
+							Dashboard </a></li>
+				</ul>
+
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link" href="login.html">
+							Login </a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="register">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 m-auto">
+					<h5 class="display-4 text-center">Submit Grade</h5>
+					<hr />
+					<form action="submit-grade" method="POST">
+						<div class="form-group">
+							<input id="trainingId" type="text"
+								class="form-control form-control-lg" placeholder="Training Id"
+								name="id" />
+						</div>
+						<div class="form-group">
+							<select class="form-control form-control-lg" id="final-grade"
+								name="final-grade" required>
+								<option selected disabled value="">Select grade</option>
+								<option value="90">A</option>
+								<option value="80">B</option>
+								<option value="70">C</option>
+								<option value="60">D</option>
+								<option value="50">F</option>
+							</select>
+						</div>
+						<input type="submit" class="btn btn-primary btn-block mt-4" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="page-footer font-small blue">
+		<div class="footer-copyright text-center py-3">
+			© 2020 Copyright: <a href="dashboard.html"> TRMS.com</a>
+		</div>
+	</footer>
+	</div>
+</body>
+</html>

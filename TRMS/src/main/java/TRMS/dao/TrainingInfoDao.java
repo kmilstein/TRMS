@@ -42,7 +42,7 @@ public class TrainingInfoDao implements Dao<TrainingInfo> {
 				String location = rs.getString("training_location");
 				String justification = rs.getString("training_justification");
 
-				ti = new TrainingInfo(trainingId, description, time, location, justification);
+				ti = new TrainingInfo(description, time, location, justification);
 			}
 
 		} catch (SQLException e) {
@@ -69,7 +69,7 @@ public class TrainingInfoDao implements Dao<TrainingInfo> {
 				String location = rs.getString("training_location");
 				String justification = rs.getString("training_justification");
 
-				ttList.add(new TrainingInfo(trainingId, description, time, location, justification));
+				ttList.add(new TrainingInfo(description, time, location, justification));
 			}
 
 		} catch (SQLException e) {
@@ -88,10 +88,11 @@ public class TrainingInfoDao implements Dao<TrainingInfo> {
 
 		try (Connection conn = connUtil.createConnection()) {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, ti.getDescription());
-			ps.setTime(2, Time.valueOf(ti.getTime()));
-			ps.setString(3, ti.getLocation());
-			ps.setString(4, ti.getJustification());
+			ps.setLong(1, ti.getTrainingId());
+			ps.setString(2, ti.getDescription());
+			ps.setTime(3, Time.valueOf(ti.getTime()));
+			ps.setString(4, ti.getLocation());
+			ps.setString(5, ti.getJustification());
 
 			ps.executeUpdate();
 			log.info("Training Info has been created");

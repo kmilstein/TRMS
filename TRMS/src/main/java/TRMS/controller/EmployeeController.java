@@ -9,12 +9,22 @@ import io.javalin.http.Context;
 
 public class EmployeeController {
 	
-	private EmployeeService empService = new EmployeeServiceImpl();
+	private EmployeeServiceImpl empService = new EmployeeServiceImpl();
+	private AuthController authController = new AuthController();
 	
 	public void getAllEmployees(Context ctx) {
+		
 		List<Employee> empList = empService.findAllEmployees();
 		
 		ctx.json(empList);
+	}
+
+	public void getAvailableFunds(Context ctx) {
+		String email = authController.checkUser(ctx);
+		
+		double funds = empService.calculateAvailableReimbursement(email);
+		
+		ctx.json(funds);
 	}
 
 }

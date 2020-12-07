@@ -1,6 +1,7 @@
 package TRMS.pojos;
 
 public class EmployeeRole {
+	
 	private long roleId;
 	private String roleName;
 	private int roleResponsibility;

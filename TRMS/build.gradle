@@ -11,8 +11,18 @@ plugins {
     id 'java-library'
 }
 
+jar {
+	manifest {
+		attributes 'Main-Class': 'TRMS.ServerDriver'
+	}
+	
+	from {
+		configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+}
+
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
+	sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
@@ -20,15 +30,42 @@ repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
-    // This dependency is exported to consumers, that is to say found on their compile classpath.
+      // This dependency is exported to consumers, that is to say found on their compile classpath.
     api 'org.apache.commons:commons-math3:3.6.1'
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    implementation 'com.google.guava:guava:28.2-jre'
+    implementation 'com.google.guava:guava:28.0-jre'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+    
+    // https://mvnrepository.com/artifact/io.javalin/javalin
+	compile group: 'io.javalin', name: 'javalin', version: '3.11.2'
+	
+	// https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
+	compile group: 'log4j', name: 'log4j', version: '1.2.17'
+	compile "org.slf4j:slf4j-simple:1.8.0-beta4"
+	
+	// https://mvnrepository.com/artifact/org.postgresql/postgresql
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
+	
+	// https://mvnrepository.com/artifact/org.mockito/mockito-all
+	testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+	
+	// https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
+	compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+	
+	compile "com.fasterxml.jackson.core:jackson-databind:2.10.3"
+	
+	implementation 'com.auth0:java-jwt:3.11.0'
+	
+	compile 'io.jsonwebtoken:jjwt-api:0.11.2'
+    runtime 'io.jsonwebtoken:jjwt-impl:0.11.2',
+             //Uncomment the next line if you want to use RSASSA-PSS (PS256, PS384, PS512) algorithms:
+            'org.bouncycastle:bcprov-jdk15on:1.60',
+            'io.jsonwebtoken:jjwt-jackson:0.11.2' // or 'io.jsonwebtoken:jjwt-gson:0.11.2' for gson
 }

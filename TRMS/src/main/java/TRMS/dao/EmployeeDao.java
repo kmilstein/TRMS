@@ -55,6 +55,38 @@ public class EmployeeDao implements Dao<Employee> {
 		log.info("Return employee object");
 		return Optional.ofNullable(emp);
 	}
+	
+	public Optional<Employee> get(String email) {
+		Employee emp = null;
+
+		try (Connection conn = connUtil.createConnection()) {
+			ps = conn.prepareStatement("select * from employee_trms where employee_email = ? ");
+			ps.setString(1, email);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				long empId = rs.getLong("employee_id");
+				String empEmail = rs.getString("employee_email");
+				String password = rs.getString("employee_password");
+				String firstName = rs.getString("employee_first_name");
+				String lastName = rs.getString("employee_last_name");
+				int role = rs.getInt("employee_role");
+				long superId = rs.getLong("employee_supervisor_id");
+				long deptHeadId = rs.getLong("employee_dept_head_id");
+				long benCoId = rs.getLong("employee_ben_co_id");
+
+				emp = new Employee(empId, empEmail, password, firstName, lastName, role, superId, deptHeadId, benCoId);
+			}
+
+		} catch (SQLException e) {
+			log.error("Exception thrown by get method in EmployeeDao");
+			e.printStackTrace();
+		}
+
+		log.info("Return employee object");
+		return Optional.ofNullable(emp);
+	}
+	
 
 	@Override
 	public List<Employee> getAll() {

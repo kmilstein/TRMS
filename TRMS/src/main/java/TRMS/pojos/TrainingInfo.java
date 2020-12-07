@@ -3,6 +3,7 @@ package TRMS.pojos;
 import java.time.LocalTime;
 
 public class TrainingInfo {
+	
 	private long trainingId;
 	private String description;
 	private LocalTime time;
@@ -13,7 +14,7 @@ public class TrainingInfo {
 		super();
 	}
 
-	public TrainingInfo(long trainingId, String description, LocalTime time, String location, String justification) {
+	public TrainingInfo(String description, LocalTime time, String location, String justification) {
 		super();
 		this.trainingId = trainingId;
 		this.description = description;

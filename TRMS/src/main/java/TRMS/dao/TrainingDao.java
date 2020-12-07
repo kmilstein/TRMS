@@ -87,7 +87,7 @@ public class TrainingDao implements Dao<Training> {
 	@Override
 	public void save(Training t) {
 		String sql = "insert into training (employee_id, training_cost, training_date, grading_format_id,"
-				+ " training_type_id) values (?, ?, ?, ?, ?)";
+				+ " training_type_id, training_status) values (?, ?, ?, ?, ?, ?)";
 
 		try (Connection conn = connUtil.createConnection()) {
 			ps = conn.prepareStatement(sql);
@@ -97,29 +97,68 @@ public class TrainingDao implements Dao<Training> {
 			ps.setDate(3, Date.valueOf(t.getDate()));
 			ps.setLong(4, t.getGradingFormatId());
 			ps.setLong(5, t.getTrainingTypeId());
+			ps.setLong(6, t.getTrainingStatus());
 
 			ps.executeUpdate();
-			log.info("Employee has been created");
+			log.info("Training has been created");
 		} catch (SQLException e) {
-			log.error("Exception thrown by save method in EmployeeDao");
+			log.error("Exception thrown by save method in TrainingDao");
 			e.printStackTrace();
 		}
 	}
-
-	@Override
-	public void update(long id, Training t) {
-		String sql = "UPDATE training SET employee_id = ?, training_cost = ?, training_date = ?, "
-				+ "grading_format_id = ?, training_type_id = ?, raining_justification = ?" + " WHERE employee_id = ?";
+	
+	public long saveWithReturnId(Training t) {
+		long trainingId = 0;
+		String sql = "insert into training (employee_id, training_cost, training_date, grading_format_id,"
+				+ " training_type_id, training_status) values (?, ?, ?, ?, ?, ?)";
 
 		try (Connection conn = connUtil.createConnection()) {
 			ps = conn.prepareStatement(sql);
 
 			ps.setLong(1, t.getEmployeeId());
 			ps.setDouble(2, t.getCost());
-			ps.setDate(3, java.sql.Date.valueOf(t.getDate()));
+			ps.setDate(3, Date.valueOf(t.getDate()));
 			ps.setLong(4, t.getGradingFormatId());
 			ps.setLong(5, t.getTrainingTypeId());
-			ps.setInt(6, t.getTrainingStatus());
+			ps.setLong(6, t.getTrainingStatus());
+
+			ps.executeUpdate();
+			log.info("Training has been created");
+			
+			ps = conn.prepareStatement("select * from training where employee_id = ? "
+					+ "and training_date = ?");
+			ps.setLong(1, t.getEmployeeId());
+			ps.setDate(2, Date.valueOf(t.getDate()));
+			
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				trainingId = rs.getLong("training_id");				
+			}
+			
+		} catch (SQLException e) {
+			log.error("Exception thrown by save method in TrainingDao");
+			e.printStackTrace();
+		}
+		
+		return trainingId;
+	}
+
+	@Override
+	public void update(long id, Training t) {
+		String sql = "UPDATE training SET training_cost = ?, training_date = ?, "
+				+ "grading_format_id = ?, training_type_id = ?, training_status = ?, training_grade = ?" + 
+				" WHERE training_id = ?";
+
+		try (Connection conn = connUtil.createConnection()) {
+			ps = conn.prepareStatement(sql);
+
+			ps.setDouble(1, t.getCost());
+			ps.setDate(2, java.sql.Date.valueOf(t.getDate()));
+			ps.setLong(3, t.getGradingFormatId());
+			ps.setLong(4, t.getTrainingTypeId());
+			ps.setInt(5, t.getTrainingStatus());
+			ps.setDouble(6, t.getGrade());
 			ps.setLong(7, id);
 
 			ps.executeUpdate();

@@ -11,6 +11,7 @@ public class Employee {
 	private long supervisorId;
 	private long deptHeadId;
 	private long benCoId;
+	private double availableReimbursement;
 	
 	public Employee() {
 		super();

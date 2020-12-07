@@ -6,7 +6,7 @@ import io.javalin.http.Context;
 
 public class AuthController {
 	
-	private AuthService auth = new AuthServiceDB();
+private AuthService auth = new AuthServiceDB();
 	
 	public void login(Context ctx) {
 		String email = ctx.formParam("email");
@@ -24,8 +24,15 @@ public class AuthController {
 		
 	}
 	
-	public void checkUser(Context ctx) {
-		//ctx.html(auth.validateToken(ctx.cookieStore("security")));
+	public String checkUser(Context ctx) {
+		String cookie = ctx.cookieStore("security");
+		return auth.validateToken(cookie);
+	}
+	
+	public void logout(Context ctx) {
+		ctx.clearCookieStore();
+		ctx.redirect("dashboard.html");
+		
 	}
 
 }
